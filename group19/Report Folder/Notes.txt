@@ -1,5 +1,7 @@
 Quick Notes for each section for the report
 
+Don't look at complier-girls pls 
+
 File Structure
 
 
