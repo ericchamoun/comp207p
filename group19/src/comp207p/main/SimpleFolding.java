@@ -163,20 +163,11 @@ public class SimpleFolding{
 	private int binaryExpressions(Number num1, Number num2, Type type, ArithmeticInstruction aInstruction){
 
 		String operation = aInstruction.getClass().getSimpleName();
-
-		if(operation.equals("IADD") || operation.equals("FADD") || operation.equals("LADD") || operation.equals("DADD")) {
-			return binaryOperations(num1,num2,type,'0');
-		}
-		else if(operation.equals("ISUB") || operation.equals("FSUB") || operation.equals("LSUB") || operation.equals("DSUB")){
-			return binaryOperations(num1,num2,type,'1');
-		}
-		else if(operation.equals("IMUL") || operation.equals("FMUL") || operation.equals("LMUL") || operation.equals("DMUL")){
-			return binaryOperations(num1,num2,type,'2');
-		}
-		else if(operation.equals("IDIV") || operation.equals("FDIV") || operation.equals("LDIV") || operation.equals("DDIV")){
-			return binaryOperations(num1,num2,type,'3');
-		}
-		return 0;
+		if     (operation.equals("IADD") || operation.equals("FADD") || operation.equals("LADD") || operation.equals("DADD")) {return binaryOperations(num1,num2,type,'0');}
+		else if(operation.equals("ISUB") || operation.equals("FSUB") || operation.equals("LSUB") || operation.equals("DSUB")){return binaryOperations(num1,num2,type,'1');}
+		else if(operation.equals("IMUL") || operation.equals("FMUL") || operation.equals("LMUL") || operation.equals("DMUL")){return binaryOperations(num1,num2,type,'2');}
+		else if(operation.equals("IDIV") || operation.equals("FDIV") || operation.equals("LDIV") || operation.equals("DDIV")){return binaryOperations(num1,num2,type,'3');}
+		return 1;
 	}
 
 	private int binaryOperations(Number num1, Number num2, Type type, char action){
@@ -184,7 +175,6 @@ public class SimpleFolding{
 		if(type.equals(Type.INT)){
 
 			switch(action){
-
 				case '0': 	return this.constantGen.addInteger((int)num1 + (int)num2);
 				case '1': 	return this.constantGen.addInteger((int)num1 - (int)num2);
 				case '2': 	return this.constantGen.addInteger((int)num1 * (int)num2);
@@ -195,38 +185,30 @@ public class SimpleFolding{
 		else if(type.equals(Type.FLOAT)){
 
 			switch(action){
-
 				case '0':	return this.constantGen.addFloat((float)num1 + (float)num2);
 				case '1':	return this.constantGen.addFloat((float)num1 - (float)num2);
 				case '2':	return this.constantGen.addFloat((float)num1 * (float)num2);
 				case '3':	return this.constantGen.addFloat((float)num1 / (float)num2);
-
 			}
 
 		}
 		else if(type.equals(Type.LONG)){
 
 			switch(action){
-
 				case '0':	return this.constantGen.addLong((long)num1 + (long)num2);
 				case '1':	return this.constantGen.addLong((long)num1 - (long)num2);
 				case '2':	return this.constantGen.addLong((long)num1 * (long)num2);
 				case '3':	return this.constantGen.addLong((long)num1 / (long)num2);
-
 			}
-
 		}
 		else if(type.equals(Type.DOUBLE)){
 
 			switch(action){
-
 				case '0': 	return this.constantGen.addDouble((double)num1 + (double)num2);
 				case '1': 	return this.constantGen.addDouble((double)num1 + (double)num2);
 				case '2': 	return this.constantGen.addDouble((double)num1 + (double)num2);
 				case '3': 	return this.constantGen.addDouble((double)num1 + (double)num2);
-
 			}
-
 		}
 		else{
 			return 0;
