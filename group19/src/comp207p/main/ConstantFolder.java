@@ -17,8 +17,6 @@ import org.apache.bcel.util.InstructionFinder;
 import org.apache.bcel.generic.MethodGen;
 import org.apache.bcel.generic.TargetLostException;
 
-
-
 public class ConstantFolder
 {
 	ClassParser parser = null;
@@ -28,7 +26,7 @@ public class ConstantFolder
 	JavaClass optimized = null;
 
 	public ConstantFolder(String classFilePath)
-	{
+	{ //Leave this alone
 		try{
 			this.parser = new ClassParser(classFilePath);
 			this.original = this.parser.parse();
@@ -37,19 +35,40 @@ public class ConstantFolder
 			e.printStackTrace();
 		}
 	}
-			
+
 	public void optimize()
 	{
-		//loads original class into a class generator
 		ClassGen cgen = new ClassGen(original);
 		ConstantPoolGen cpgen = cgen.getConstantPool();
 
 		// Implement your optimization here
-		
+		Method[] methods = cgen.getMethods();
+		for (Method method : methods)
+			optimizeMethod(cgen, cpgen, method);
+
 		this.optimized = gen.getJavaClass();
 	}
 
-	
+	private void optimizeMethod(ClassGen cgen, ConstantPoolGen cpgen, Method method)
+	{
+		SimpleFolder sfoldr = new SimpleFolder(cgen, cpgen);
+		//Need variable_folder too RIP
+
+		Code method_code = method.getCode();
+		InstructionList instruction_list = new InstructionList(method_code.getCode());
+		MethodGen mg = new MethodGen(method.getAccessFlags(), method.getReturnType(), method.getArgumentTypes(), null, method.getName(), cgen.getClassName(), instruction_list, cpgen);
+		Method optimized_method = method;
+
+		try{
+	    	optimized_method = sfoldr.optimiseMethod(method, mg, instruction_list); //Get some folding at least...
+		}
+		catch (TargetLostException e){
+	    	System.out.println("Can't simple fold RIP");
+	    	e.printStackTrace();
+	    }
+		cgen.replaceMethod(method, optimized_method); //swap out old shitty method for new optimized method
+	}
+
 	public void write(String optimisedFilePath)
 	{
 		this.optimize();
