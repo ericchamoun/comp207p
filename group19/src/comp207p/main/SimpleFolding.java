@@ -71,8 +71,8 @@ public class SimpleFolding{
 			return mg.getMethod();
 		}
 		return null;
-
 	}
+
 	private int arithmeticExpression(InstructionList instList, InstructionHandle handler){
 
 		ArithmeticInstruction instruction = (ArithmeticInstruction) handler.getInstruction();
@@ -81,14 +81,15 @@ public class SimpleFolding{
 
 		//Need previous two instructions to get numbers.
 
-		InstructionHandle prevHandler = instruction.getPrev();
+		InstructionHandle prevHandler = handler.getPrev(); 	//instruction.getPrev();
 		Instruction prevInstruction = prevHandler.getInstruction();
 
 		InstructionHandle prev2Handler = prevHandler.getPrev();
 		Instruction prev2Instruction = prev2Handler.getInstruction();
 
 		//Get Values of numbers.
-		Number num1, num2 = null;
+		Number num1 = null;
+		Number num2 = null;
 
 		if(prev2Instruction instanceof LDC){
 			LDC ldc = (LDC) prev2Instruction;
@@ -98,7 +99,7 @@ public class SimpleFolding{
 			}
 		}
 		else if(prev2Instruction instanceof LDC2_W){
-			LDC2 ldc2 = (LDC2_W) prev2Instruction;
+			LDC2_W ldc2 = (LDC2_W) prev2Instruction;
 			Type temp = ldc2.getType(constantGen);
 			if(temp == Type.INT || temp == Type.FLOAT || temp == Type.LONG || temp == Type.DOUBLE){
 				num1 = ldc2.getValue(constantGen);
@@ -121,7 +122,7 @@ public class SimpleFolding{
 			}
 		}
 		else if(prevInstruction instanceof LDC2_W){
-			LDC2 ldc2 = (LDC2_W) prevInstruction;
+			LDC2_W ldc2 = (LDC2_W) prevInstruction;
 			Type temp = ldc2.getType(constantGen);
 			if(temp == Type.INT || temp == Type.FLOAT || temp == Type.LONG || temp == Type.DOUBLE){
 				num2 = ldc2.getValue(constantGen);
