@@ -176,7 +176,7 @@ public class SimpleFolding{
 		else if(operation.equals("IDIV") || operation.equals("FDIV") || operation.equals("LDIV") || operation.equals("DDIV")){
 			return binaryOperations(num1,num2,type,'3');
 		}
-
+		return 0;
 	}
 
 	private int binaryOperations(Number num1, Number num2, Type type, char action){
@@ -186,14 +186,9 @@ public class SimpleFolding{
 			switch(action){
 
 				case '0': 	return this.constantGen.addInteger((int)num1 + (int)num2);
-							break;
 				case '1': 	return this.constantGen.addInteger((int)num1 - (int)num2);
-							break;
 				case '2': 	return this.constantGen.addInteger((int)num1 * (int)num2);
-							break;
 				case '3': 	return this.constantGen.addInteger((int)num1 / (int)num2);
-							break;
-
 			}
 
 		}
@@ -202,13 +197,9 @@ public class SimpleFolding{
 			switch(action){
 
 				case '0':	return this.constantGen.addFloat((float)num1 + (float)num2);
-							break;
 				case '1':	return this.constantGen.addFloat((float)num1 - (float)num2);
-							break;
 				case '2':	return this.constantGen.addFloat((float)num1 * (float)num2);
-							break;
 				case '3':	return this.constantGen.addFloat((float)num1 / (float)num2);
-							break;
 
 			}
 
@@ -218,13 +209,9 @@ public class SimpleFolding{
 			switch(action){
 
 				case '0':	return this.constantGen.addLong((long)num1 + (long)num2);
-							break;
 				case '1':	return this.constantGen.addLong((long)num1 - (long)num2);
-							break;
 				case '2':	return this.constantGen.addLong((long)num1 * (long)num2);
-							break;
 				case '3':	return this.constantGen.addLong((long)num1 / (long)num2);
-							break;
 
 			}
 
@@ -234,13 +221,9 @@ public class SimpleFolding{
 			switch(action){
 
 				case '0': 	return this.constantGen.addDouble((double)num1 + (double)num2);
-							break;
 				case '1': 	return this.constantGen.addDouble((double)num1 + (double)num2);
-							break;
 				case '2': 	return this.constantGen.addDouble((double)num1 + (double)num2);
-							break;
 				case '3': 	return this.constantGen.addDouble((double)num1 + (double)num2);
-							break;
 
 			}
 
@@ -248,6 +231,6 @@ public class SimpleFolding{
 		else{
 			return 0;
 		}
-
+		return 0;
 	}
 }
