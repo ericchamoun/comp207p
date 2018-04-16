@@ -73,7 +73,7 @@ public class SimpleFolding{
 		return null;
 	}
 
-	private int arithmeticExpression(InstructionList instList, InstructionHandle handler){
+	private int arithmeticExpression(InstructionList instList, InstructionHandle handler) throws TargetLostException{
 
 		ArithmeticInstruction instruction = (ArithmeticInstruction) handler.getInstruction();
 
@@ -84,6 +84,7 @@ public class SimpleFolding{
 		InstructionHandle prevHandler = handler.getPrev(); 	//instruction.getPrev();
 		Instruction prevInstruction = prevHandler.getInstruction();
 
+		//previousInstructionHandle.getInstruction();
 		InstructionHandle prev2Handler = prevHandler.getPrev();
 		Instruction prev2Instruction = prev2Handler.getInstruction();
 
@@ -93,7 +94,7 @@ public class SimpleFolding{
 
 		if(prev2Instruction instanceof LDC){
 			LDC ldc = (LDC) prev2Instruction;
-			Object value = ldc.getValue(constPoolGen);
+			Object value = ldc.getValue(constantGen);
 			if(ldc.getValue(constantGen) instanceof Number){
 				num1 = (Number) value;
 			}
@@ -116,7 +117,7 @@ public class SimpleFolding{
 
 		if(prevInstruction instanceof LDC){
 			LDC ldc = (LDC) prevInstruction;
-			Object value = ldc.getValue(constPoolGen);
+			Object value = ldc.getValue(constantGen);
 			if(ldc.getValue(constantGen) instanceof Number){
 				num2 = (Number) value;
 			}
