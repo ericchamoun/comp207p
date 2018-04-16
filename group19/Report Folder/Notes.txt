@@ -1,6 +1,5 @@
 Quick Notes for each section for the report
 
-
 File Structure
 
 
