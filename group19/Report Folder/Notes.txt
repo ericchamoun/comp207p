@@ -4,6 +4,9 @@ File Structure
 
 
 Simple folding
-
+- Created new file that attempts to optimise simple folding.
+- Arithmetic expressions involving constants needs to be folded. This has been implemented so far.
+- 4 operations, add,sub,mul,div on 4 operands.
+- Is there any other statements we could optimise?
 
 Constant Variables
