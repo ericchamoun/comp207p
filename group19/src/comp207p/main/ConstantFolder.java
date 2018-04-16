@@ -51,7 +51,7 @@ public class ConstantFolder
 
 	private void optimizeMethod(ClassGen cgen, ConstantPoolGen cpgen, Method method)
 	{
-		SimpleFolder sfoldr = new SimpleFolder(cgen, cpgen);
+		SimpleFolding sfoldr = new SimpleFolding(cgen, cpgen);
 		//Need variable_folder too RIP
 
 		Code method_code = method.getCode();
