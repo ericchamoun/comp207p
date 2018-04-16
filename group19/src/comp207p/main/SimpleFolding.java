@@ -10,6 +10,34 @@ import org.apache.bcel.classfile.Code;
 import org.apache.bcel.classfile.JavaClass;
 import org.apache.bcel.classfile.Method;
 import org.apache.bcel.generic.*;
+import org.apache.bcel.generic.ArithmeticInstruction;
+import org.apache.bcel.generic.ClassGen;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.ConstantPushInstruction;
+import org.apache.bcel.generic.ConversionInstruction;
+import org.apache.bcel.generic.DADD;
+import org.apache.bcel.generic.DCMPG;
+import org.apache.bcel.generic.DCMPG;
+import org.apache.bcel.generic.FCMPG;
+import org.apache.bcel.generic.FCMPL;
+import org.apache.bcel.generic.FADD;
+import org.apache.bcel.generic.FCMPG;
+import org.apache.bcel.generic.FCMPL;
+import org.apache.bcel.generic.GotoInstruction;
+import org.apache.bcel.generic.IADD;
+import org.apache.bcel.generic.IfInstruction;
+import org.apache.bcel.generic.Instruction;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.LADD;
+import org.apache.bcel.generic.LCMP;
+import org.apache.bcel.generic.LDC;
+import org.apache.bcel.generic.LDC2_W;
+import org.apache.bcel.generic.TargetLostException;
+import org.apache.bcel.generic.Type;
+import org.apache.bcel.generic.TypedInstruction;
+
+import javax.rmi.CORBA.Util;
 
 public class SimpleFolding{
 
@@ -64,15 +92,16 @@ public class SimpleFolding{
 
 		if(prev2Instruction instanceof LDC){
 			LDC ldc = (LDC) prev2Instruction;
+			Object value = ldc.getValue(constPoolGen);
 			if(ldc.getValue(constantGen) instanceof Number){
 				num1 = (Number) value;
 			}
 		}
 		else if(prev2Instruction instanceof LDC2_W){
-			LDC2 ldc2 = (LCD2_W) prev2Instruction;
-			Type temp = lcd2.getType(constantGen);
-			if(temp == TYPE.INT || temp == TYPE.FLOAT || temp == TYPE.LONG || temp == TYPE.DOUBLE){
-				num1 = lcd2.getValue(constantGen);
+			LDC2 ldc2 = (LDC2_W) prev2Instruction;
+			Type temp = ldc2.getType(constantGen);
+			if(temp == Type.INT || temp == Type.FLOAT || temp == Type.LONG || temp == Type.DOUBLE){
+				num1 = ldc2.getValue(constantGen);
 			}
 		}
 		else if(prev2Instruction instanceof ConstantPushInstruction){
@@ -86,15 +115,16 @@ public class SimpleFolding{
 
 		if(prevInstruction instanceof LDC){
 			LDC ldc = (LDC) prevInstruction;
+			Object value = ldc.getValue(constPoolGen);
 			if(ldc.getValue(constantGen) instanceof Number){
 				num2 = (Number) value;
 			}
 		}
 		else if(prevInstruction instanceof LDC2_W){
-			LDC2 ldc2 = (LCD2_W) prevInstruction;
-			Type temp = lcd2.getType(constantGen);
-			if(temp == TYPE.INT || temp == TYPE.FLOAT || temp == TYPE.LONG || temp == TYPE.DOUBLE){
-				num2 = lcd2.getValue(constantGen);
+			LDC2 ldc2 = (LDC2_W) prevInstruction;
+			Type temp = ldc2.getType(constantGen);
+			if(temp == Type.INT || temp == Type.FLOAT || temp == Type.LONG || temp == Type.DOUBLE){
+				num2 = ldc2.getValue(constantGen);
 			}
 		}
 		else if(prevInstruction instanceof ConstantPushInstruction){
@@ -109,7 +139,7 @@ public class SimpleFolding{
 
 		Instruction newInstruction;
 
-		if(type.equals(TYPE.INT) || type.equals(TYPE.FLOAT)){
+		if(type.equals(Type.INT) || type.equals(Type.FLOAT)){
 			newInstruction = new LDC(pos);
 		}
 		else{
@@ -165,7 +195,7 @@ public class SimpleFolding{
 			}
 
 		}
-		else if(type.equals(TYPE.FLOAT)){
+		else if(type.equals(Type.FLOAT)){
 
 			switch(action){
 
@@ -181,7 +211,7 @@ public class SimpleFolding{
 			}
 
 		}
-		else if(type.equals(TYPE.LONG)){
+		else if(type.equals(Type.LONG)){
 
 			switch(action){
 
@@ -197,7 +227,7 @@ public class SimpleFolding{
 			}
 
 		}
-		else if(type.equals(TYPE.DOUBLE)){
+		else if(type.equals(Type.DOUBLE)){
 
 			switch(action){
 
@@ -218,20 +248,4 @@ public class SimpleFolding{
 		}
 
 	}
-
-	/*private int ifStatements(InstructionList instList, InstructionHandle handler){
-
-		IfInstruction ifStatement = (IfInstruction) handler.getInstruction();
-		String name = ifStatement.getClass().getSimpleName();
-
-		Type type1, type2 = null;
-
-		InstructionHandle prevHandler = handler.getPrev();
-		Instruction instruction = prevHandler.getInstruction();
-
-
-
-
-	}*/
-
 }
