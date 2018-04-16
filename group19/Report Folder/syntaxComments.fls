@@ -1,0 +1,6 @@
+PWD C:/Users/dines/Documents/UCL Mathematical Computation Year 2/Comp207p/comp207p-master/comp207p-master/group19/Report Folder
+INPUT c:/texlive/2017/texmf.cnf
+INPUT c:/texlive/2017/texmf-dist/web2c/texmf.cnf
+INPUT c:/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT ./syntaxComments.tex
+OUTPUT syntaxComments.log

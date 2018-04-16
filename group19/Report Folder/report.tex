@@ -15,22 +15,39 @@
 \maketitle
 
 \section{Introduction}
-lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+In this report we will outline the thought processes and actions undertaken in order to implement \textbf{Simple Folding} and \textbf{Constant Variables} peephole optimisations.
+
+\section{Notes on File Structure}
+We decided that \texttt{SimpleFolding} should be in a separate file to the provided \texttt{ConstantFolding} in order to adhere to the good practice of keeping one public class per \texttt{java} file
+
+\section{Simple Folding}
+\subsection{Thought Processess and Design Decisions}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Implementation Notes}
 \begin{algorithm}[H]
-\caption{Sample algorithm}
+\caption{Simple Folding algorithm}
 \begin{algorithmic}[1]
-  \State Hope = 4
-  \While {Hope $>$ 0}
-  \If {knowWhatToDo = True}
-  \State person $\gets$ DoesSomething
-  \Else
-  \State Hope $\gets$ Hope $-1$
-  \EndIf
-  \EndWhile
+    \State Hope = 4
+    \While {Hope $>$ 0}
+    \If {knowWhatToDo = True}
+    \State person $\gets$ DoesSomething
+    \Else
+    \State Hope $\gets$ Hope $-1$
+    \EndIf
+    \EndWhile
 \end{algorithmic}
 \end{algorithm}
-\section{Simple Folding}
+
+\subsection{Testing and Result}
+
+\section{Constant Folding}
+\subsection{Thought Processess and Design Decisions}
+
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Implementation Notes}
 \begin{algorithm}[H]
 \caption{Simple Folding algorithm}
 \begin{algorithmic}[1]
@@ -45,34 +62,5 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 \end{algorithmic}
 \end{algorithm}
 
-\section{Constant Folding}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-\begin{algorithm}[H]
-\caption{Constant Folding algorithm}
-\begin{algorithmic}[1]
-  \State Hope = 4
-  \While {Hope $>$ 0}
-  \If {knowWhatToDo = True}
-  \State person $\gets$ DoesSomething
-  \Else
-  \State Hope $\gets$ Hope $-1$
-  \EndIf
-  \EndWhile
-\end{algorithmic}
-\end{algorithm}
-\section{Dynamic Folding}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-\begin{algorithm}[H]
-\caption{Dynamic Folding algorithm}
-\begin{algorithmic}[1]
-  \State Hope = 4
-  \While {Hope $>$ 0}
-  \If {knowWhatToDo = True}
-  \State person $\gets$ DoesSomething
-  \Else
-  \State Hope $\gets$ Hope $-1$
-  \EndIf
-  \EndWhile
-\end{algorithmic}
-\end{algorithm}
+\subsection{Testing and Result}
 \end{document}
