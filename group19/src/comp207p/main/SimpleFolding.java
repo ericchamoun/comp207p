@@ -13,14 +13,14 @@ import org.apache.bcel.generic.*;
 
 import javax.rmi.CORBA.Util;
 
-public class SimpleFolding{
+public class ConstantFolding{
 
 	ClassParser parser = null;
 	ClassGen gen = null;
 
 	ConstantPoolGen constantGen;
 
-	public SimpleFolding(ClassGen gen, ConstantPoolGen constantGen){
+	public ConstantFolding(ClassGen gen, ConstantPoolGen constantGen){
 		this.gen = gen;
 		this.constantGen = constantGen;
 	}
