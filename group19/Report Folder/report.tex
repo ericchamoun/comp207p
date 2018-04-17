@@ -23,7 +23,11 @@ We decided that \texttt{SimpleFolding} should be in a separate file to the provi
 \section{Simple Folding}
 \subsection{Thought Processess and Design Decisions}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Our first task was to implement simple constant folding, which consisted in identifying constant expressions at compile time and replacing them with the evaluated result rather than computing them at runtime.
+In order to perform this task, we first concentrate on arithmetic expressions. Indeed, the algorithm works by identifying the arithmetic instructions operating on two constants and the unary operations operating on one before evaluating the expressions and replacing the statements with a compile-time value.
+Additionally, implementing constant folding has also been done on casting between different types. Indeed, this is achieved by casting constant values to different types.
+It is worth noting that due to the way the stack functions, it is possible for us to use variable expressions within function parameters or return statements as we are only dealing with the binary/unary operations independent of what happened before.
+
 
 \subsection{Implementation Notes}
 \begin{algorithm}[H]
