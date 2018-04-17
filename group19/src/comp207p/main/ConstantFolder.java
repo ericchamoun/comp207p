@@ -51,8 +51,8 @@ public class ConstantFolder
 
 	private void optimizeMethod(ClassGen cgen, ConstantPoolGen cpgen, Method method)
 	{
-		SimpleFolding sfoldr = new SimpleFolding(cgen, cpgen);
-		//Need variable_folder too RIP
+		ConstantFolding cfoldr = new ConstantFolding(cgen, cpgen);
+		
 
 		Code method_code = method.getCode();
 		InstructionList instruction_list = new InstructionList(method_code.getCode());
@@ -60,13 +60,13 @@ public class ConstantFolder
 		Method optimized_method = method;
 
 		try{
-	    	optimized_method = sfoldr.optimiseMethod(method, mg, instruction_list); //Get some folding at least...
+	    	optimized_method = cfoldr.optimiseMethod(method, mg, instruction_list); //Get some folding at least...
 		}
 		catch (TargetLostException e){
-	    	System.out.println("Can't simple fold RIP");
+	    	System.out.println("Can't simple fold");
 	    	e.printStackTrace();
 	    }
-		cgen.replaceMethod(method, optimized_method); //swap out old shitty method for new optimized method
+		cgen.replaceMethod(method, optimized_method); //swap out old method for new optimized method
 	}
 
 	public void write(String optimisedFilePath)
