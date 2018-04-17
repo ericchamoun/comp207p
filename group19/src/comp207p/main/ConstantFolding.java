@@ -5,32 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
-import org.apache.bcel.generic.ArithmeticInstruction;
-import org.apache.bcel.generic.ClassGen;
-import org.apache.bcel.generic.ConstantPoolGen;
-import org.apache.bcel.generic.ConstantPushInstruction;
-import org.apache.bcel.generic.ConversionInstruction;
-import org.apache.bcel.generic.DADD;
-import org.apache.bcel.generic.DCMPG;
-import org.apache.bcel.generic.DCMPG;
-import org.apache.bcel.generic.FCMPG;
-import org.apache.bcel.generic.FCMPL;
-import org.apache.bcel.generic.FADD;
-import org.apache.bcel.generic.FCMPG;
-import org.apache.bcel.generic.FCMPL;
-import org.apache.bcel.generic.GotoInstruction;
-import org.apache.bcel.generic.IADD;
-import org.apache.bcel.generic.IfInstruction;
-import org.apache.bcel.generic.Instruction;
-import org.apache.bcel.generic.InstructionHandle;
-import org.apache.bcel.generic.InstructionList;
-import org.apache.bcel.generic.LADD;
-import org.apache.bcel.generic.LCMP;
-import org.apache.bcel.generic.LDC;
-import org.apache.bcel.generic.LDC2_W;
-import org.apache.bcel.generic.TargetLostException;
-import org.apache.bcel.generic.Type;
-import org.apache.bcel.generic.TypedInstruction;
+import org.apache.bcel.generic.*;
 
 import javax.rmi.CORBA.Util;
 
@@ -92,10 +67,10 @@ public class ConstantFolding{
 			}
 		}
 		else if(prev2Instruction instanceof LDC2_W){
-			LDC2 ldc2 = (LCD2_W) prev2Instruction;
-			Type temp = lcd2.getType(constantGen);
+			LDC2 ldc2 = (LDC2_W) prev2Instruction;
+			Type temp = ldc2.getType(constantGen);
 			if(temp == TYPE.INT || temp == TYPE.FLOAT || temp == TYPE.LONG || temp == TYPE.DOUBLE){
-				num1 = lcd2.getValue(constantGen);
+				num1 = ldc2.getValue(constantGen);
 			}
 		}
 		else if(prev2Instruction instanceof ConstantPushInstruction){
@@ -111,10 +86,10 @@ public class ConstantFolding{
 			}
 		}
 		else if(prevInstruction instanceof LDC2_W){
-			LDC2 ldc2 = (LCD2_W) prevInstruction;
-			Type temp = lcd2.getType(constantGen);
+			LDC2 ldc2 = (LDC2_W) prevInstruction;
+			Type temp = ldc2.getType(constantGen);
 			if(temp == TYPE.INT || temp == TYPE.FLOAT || temp == TYPE.LONG || temp == TYPE.DOUBLE){
-				num2 = lcd2.getValue(constantGen);
+				num2 = ldc2.getValue(constantGen);
 			}
 		}
 		else if(prevInstruction instanceof ConstantPushInstruction){
@@ -296,10 +271,10 @@ public class ConstantFolding{
 			}
 		}
 		else if(prevInstruction instanceof LDC2_W){
-			LDC2 ldc2 = (LCD2_W) prev2Instruction;
-			Type temp = lcd2.getType(constantGen);
+			LDC2 ldc2 = (LDC2_W) prev2Instruction;
+			Type temp = ldc2.getType(constantGen);
 			if(temp == TYPE.INT || temp == TYPE.FLOAT || temp == TYPE.LONG || temp == TYPE.DOUBLE){
-				num1 = lcd2.getValue(constantGen);
+				num1 = ldc2.getValue(constantGen);
 			}
 		}
 		else if(prevInstruction instanceof ConstantPushInstruction){
@@ -313,16 +288,16 @@ public class ConstantFolding{
 		Instruction newInstruction;
 		
 		if(type.equals(TYPE.INT)){
-			newInstruction = new LDC(constantGen.addInteger((int)num1));
+			newInstruction = new LDC(constantGen.addInteger(num1.intValue()));
 		}
 		else if(type.equals(TYPE.FLOAT){
-			newInstruction = new LDC(constantGen.addFloat((float)num1));
+			newInstruction = new LDC(constantGen.addFloat(num1.floatValue()));
 		}
 		else if(type.equals(TYPE.LONG){
-			newInstruction = new LDC(constantGen.addInteger((long)num1));
+			newInstruction = new LDC(constantGen.addInteger(num1.longValue()));
 		}
 		else if(type.equals(TYPE.DOUBLE){
-			newInstruction = new LDC(constantGen.addInteger((double)num1));
+			newInstruction = new LDC(constantGen.addInteger(num1.doubleValue()));
 		}
 		else{
 			return 0;
